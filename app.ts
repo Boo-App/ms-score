@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use(function (req, res, next) {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:4200");
+    res.setHeader("Access-Control-Allow-Origin", "*");
 
     res.setHeader(
         "Access-Control-Allow-Methods",

@@ -1,15 +1,20 @@
-import {ScoreDAO} from "../dao/score"
-import Score, {DataScore} from "../interface/score";
+const mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
-export class ScoreService {
-
-    private scoreDAO = new ScoreDAO()
-
-    async addScore(score: DataScore, id: String) {
-        return this.scoreDAO.addScore(score, id)
+var ScoreSchema = new Schema({
+  id: String,
+  score: [
+    {
+      value: Number,
+      nbQuestion: Number,
+      createdAt: Date,
+      difficulty: String,
+      theme: String,
     }
+  ],
+});
 
-    async getScore(id: String) {
-        return this.scoreDAO.getScore(id)
-    }
-}
+// Compile model from schema
+var ScoreModel = mongoose.model("Score", ScoreSchema);
+
+module.exports = ScoreModel;
